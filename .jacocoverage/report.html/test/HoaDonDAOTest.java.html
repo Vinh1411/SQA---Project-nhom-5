@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>HoaDonDAOTest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;HeThongTinhThue&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">test</a> &gt; <span class="el_source">HoaDonDAOTest.java</span></div><h1>HoaDonDAOTest.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package test;
+
+import dao.DAO;
+import dao.HoaDonDAO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import model.BieuMauTinhThue;
+import model.HoaDon;
+import model.HoaDonChiTiet;
+import model.NganHang;
+import model.NguoiDung;
+import model.ToKhaiThue;
+import org.junit.Assert;
+import org.junit.Test;
+
+/**
+ *
+ * @author Vinh
+ */
+<span class="fc" id="L30">public class HoaDonDAOTest {</span>
+<span class="fc" id="L31">    HoaDonDAO hoaDonDAO=new HoaDonDAO();</span>
+    
+    //Hoa don sai thong tin, nguoi dung khong ton tai
+    @Test
+    public void testThemHoaDonException1(){
+<span class="fc" id="L36">        Connection con=DAO.con;</span>
+        try{
+<span class="fc" id="L38">            HoaDon hoaDon=new HoaDon();</span>
+<span class="fc" id="L39">            hoaDon.setSoThe(&quot;0123456789&quot;);</span>
+<span class="fc" id="L40">            hoaDon.setTenChuThe(&quot;Vinh&quot;);</span>
+<span class="fc" id="L41">            hoaDon.setCVC(&quot;123&quot;);</span>
+<span class="fc" id="L42">            hoaDon.setThangNamHetHan(new Date());</span>
+<span class="fc" id="L43">            hoaDon.setTienPhaiDong(0);</span>
+<span class="fc" id="L44">            hoaDon.setTrangThai(Boolean.TRUE);</span>
+<span class="fc" id="L45">            hoaDon.setNgayYeuCau(new Date());</span>
+<span class="fc" id="L46">            hoaDon.setNgayThanhToan(new Date());</span>
+<span class="fc" id="L47">            NguoiDung nguoiDung=new NguoiDung();</span>
+<span class="fc" id="L48">            nguoiDung.setId(-1);</span>
+<span class="fc" id="L49">            hoaDon.setNguoiDung(nguoiDung);</span>
+<span class="fc" id="L50">            NganHang nganHang=new NganHang(1, &quot;scb&quot;, &quot;ngan hang cong thuong&quot;);</span>
+<span class="fc" id="L51">            hoaDon.setNganHang(nganHang);</span>
+<span class="fc" id="L52">            con.setAutoCommit(false);</span>
+<span class="fc" id="L53">            String sql=&quot;DELETE FROM hoadon&quot;;</span>
+<span class="fc" id="L54">            PreparedStatement ps=con.prepareStatement(sql);</span>
+<span class="fc" id="L55">            ps.executeUpdate();</span>
+<span class="fc" id="L56">            boolean result=hoaDonDAO.themHoaDon(hoaDon);</span>
+<span class="fc" id="L57">            sql=&quot;SELECT COUNT(*) AS COUNT FROM hoadon&quot;;</span>
+<span class="fc" id="L58">            ps=con.prepareStatement(sql);</span>
+<span class="fc" id="L59">            ResultSet rs=ps.executeQuery();</span>
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">            if(rs.next()){</span>
+<span class="fc" id="L61">                Assert.assertEquals(rs.getInt(&quot;COUNT&quot;), 0);</span>
+            }
+<span class="fc" id="L63">            Assert.assertEquals(result, false);</span>
+<span class="nc" id="L64">        }catch(Exception e){</span>
+<span class="nc" id="L65">            e.printStackTrace();</span>
+        }
+        finally{
+<span class="nc" id="L68">            try{</span>
+<span class="pc" id="L69">                con.rollback();</span>
+<span class="pc" id="L70">                con.setAutoCommit(true);</span>
+            }
+<span class="nc" id="L72">            catch(Exception ex){</span>
+<span class="nc" id="L73">                ex.printStackTrace();</span>
+<span class="pc" id="L74">            }</span>
+<span class="nc" id="L75">        }</span>
+        
+<span class="fc" id="L77">        return;</span>
+    }
+    
+    //Hoa don sai thong tin, ngan hang khong ton tai
+    @Test
+    public void testThemHoaDonException2(){
+<span class="fc" id="L83">        Connection con=DAO.con;</span>
+        try{
+<span class="fc" id="L85">            HoaDon hoaDon=new HoaDon();</span>
+<span class="fc" id="L86">            hoaDon.setSoThe(&quot;0123456789&quot;);</span>
+<span class="fc" id="L87">            hoaDon.setTenChuThe(&quot;Vinh&quot;);</span>
+<span class="fc" id="L88">            hoaDon.setCVC(&quot;123&quot;);</span>
+<span class="fc" id="L89">            hoaDon.setThangNamHetHan(new Date());</span>
+<span class="fc" id="L90">            hoaDon.setTienPhaiDong(0);</span>
+<span class="fc" id="L91">            hoaDon.setTrangThai(Boolean.TRUE);</span>
+<span class="fc" id="L92">            hoaDon.setNgayYeuCau(new Date());</span>
+<span class="fc" id="L93">            hoaDon.setNgayThanhToan(new Date());</span>
+<span class="fc" id="L94">            NguoiDung nguoiDung=new NguoiDung();</span>
+<span class="fc" id="L95">            nguoiDung.setId(2);</span>
+<span class="fc" id="L96">            hoaDon.setNguoiDung(nguoiDung);</span>
+<span class="fc" id="L97">            NganHang nganHang=new NganHang(-1, &quot;scb&quot;, &quot;ngan hang cong thuong&quot;);</span>
+<span class="fc" id="L98">            hoaDon.setNganHang(nganHang);</span>
+<span class="fc" id="L99">            con.setAutoCommit(false);</span>
+<span class="fc" id="L100">            String sql=&quot;DELETE FROM hoadon&quot;;</span>
+<span class="fc" id="L101">            PreparedStatement ps=con.prepareStatement(sql);</span>
+<span class="fc" id="L102">            ps.executeUpdate();</span>
+<span class="fc" id="L103">            boolean result=hoaDonDAO.themHoaDon(hoaDon);</span>
+<span class="fc" id="L104">            sql=&quot;SELECT COUNT(*) AS COUNT FROM hoadon&quot;;</span>
+<span class="fc" id="L105">            ps=con.prepareStatement(sql);</span>
+<span class="fc" id="L106">            ResultSet rs=ps.executeQuery();</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">            if(rs.next()){</span>
+<span class="fc" id="L108">                Assert.assertEquals(rs.getInt(&quot;COUNT&quot;), 0);</span>
+            }
+<span class="fc" id="L110">            Assert.assertEquals(result, false);</span>
+<span class="nc" id="L111">        }catch(Exception e){</span>
+<span class="nc" id="L112">            e.printStackTrace();</span>
+        }
+        finally{
+<span class="nc" id="L115">            try{</span>
+<span class="pc" id="L116">                con.rollback();</span>
+<span class="pc" id="L117">                con.setAutoCommit(true);</span>
+            }
+<span class="nc" id="L119">            catch(Exception ex){</span>
+<span class="nc" id="L120">                ex.printStackTrace();</span>
+<span class="pc" id="L121">            }</span>
+<span class="nc" id="L122">        }</span>
+        
+<span class="fc" id="L124">        return;</span>
+    }
+    
+    //Hóa đơn không thanh toán cho bất kỳ một kỳ thuế nào
+    @Test
+    public void testThemHoaDonException3(){
+<span class="fc" id="L130">        Connection con=DAO.con;</span>
+        try{
+<span class="fc" id="L132">            HoaDon hoaDon=new HoaDon();</span>
+<span class="fc" id="L133">            hoaDon.setSoThe(&quot;0123456789&quot;);</span>
+<span class="fc" id="L134">            hoaDon.setTenChuThe(&quot;Vinh&quot;);</span>
+<span class="fc" id="L135">            hoaDon.setCVC(&quot;123&quot;);</span>
+<span class="fc" id="L136">            hoaDon.setThangNamHetHan(new Date());</span>
+<span class="fc" id="L137">            hoaDon.setTienPhaiDong(0);</span>
+<span class="fc" id="L138">            hoaDon.setTrangThai(Boolean.TRUE);</span>
+<span class="fc" id="L139">            hoaDon.setNgayYeuCau(new Date());</span>
+<span class="fc" id="L140">            hoaDon.setNgayThanhToan(new Date());</span>
+<span class="fc" id="L141">            NguoiDung nguoiDung=new NguoiDung();</span>
+<span class="fc" id="L142">            nguoiDung.setId(2);</span>
+<span class="fc" id="L143">            hoaDon.setNguoiDung(nguoiDung);</span>
+<span class="fc" id="L144">            NganHang nganHang=new NganHang(1, &quot;scb&quot;, &quot;ngan hang cong thuong&quot;);</span>
+<span class="fc" id="L145">            hoaDon.setNganHang(nganHang);</span>
+<span class="fc" id="L146">            con.setAutoCommit(false);</span>
+<span class="fc" id="L147">            String sql=&quot;DELETE FROM hoadon&quot;;</span>
+<span class="fc" id="L148">            PreparedStatement ps=con.prepareStatement(sql);</span>
+<span class="fc" id="L149">            ps.executeUpdate();</span>
+<span class="fc" id="L150">            boolean result=hoaDonDAO.themHoaDon(hoaDon);</span>
+<span class="fc" id="L151">            sql=&quot;SELECT COUNT(*) AS COUNT FROM hoadon&quot;;</span>
+<span class="fc" id="L152">            ps=con.prepareStatement(sql);</span>
+<span class="fc" id="L153">            ResultSet rs=ps.executeQuery();</span>
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">            if(rs.next()){</span>
+<span class="fc" id="L155">                Assert.assertEquals(rs.getInt(&quot;COUNT&quot;), 0);</span>
+            }
+<span class="fc" id="L157">            Assert.assertEquals(result, false);</span>
+<span class="nc" id="L158">        }catch(Exception e){</span>
+<span class="nc" id="L159">            e.printStackTrace();</span>
+        }
+        finally{
+<span class="nc" id="L162">            try{</span>
+<span class="pc" id="L163">                con.rollback();</span>
+<span class="pc" id="L164">                con.setAutoCommit(true);</span>
+            }
+<span class="nc" id="L166">            catch(Exception ex){</span>
+<span class="nc" id="L167">                ex.printStackTrace();</span>
+<span class="pc" id="L168">            }</span>
+<span class="nc" id="L169">        }</span>
+        
+<span class="fc" id="L171">        return;</span>
+    }
+     
+    //Hóa đơn thanh toán cho 1 kỳ tính thuế.
+    @Test
+    public void testThemHoaDonException4(){
+<span class="fc" id="L177">        Connection con=DAO.con;</span>
+        try{
+<span class="fc" id="L179">            con.setAutoCommit(false);</span>
+<span class="fc" id="L180">            HoaDon hoaDon=new HoaDon();</span>
+<span class="fc" id="L181">            hoaDon.setSoThe(&quot;0123456789&quot;);</span>
+<span class="fc" id="L182">            hoaDon.setTenChuThe(&quot;Vinh&quot;);</span>
+<span class="fc" id="L183">            hoaDon.setCVC(&quot;123&quot;);</span>
+<span class="fc" id="L184">            hoaDon.setThangNamHetHan(new Date());</span>
+<span class="fc" id="L185">            hoaDon.setTienPhaiDong(0);</span>
+<span class="fc" id="L186">            hoaDon.setTrangThai(Boolean.TRUE);</span>
+<span class="fc" id="L187">            hoaDon.setNgayYeuCau(new Date());</span>
+<span class="fc" id="L188">            hoaDon.setNgayThanhToan(new Date());</span>
+<span class="fc" id="L189">            NguoiDung nguoiDung=new NguoiDung();</span>
+<span class="fc" id="L190">            nguoiDung.setId(2);</span>
+<span class="fc" id="L191">            hoaDon.setNguoiDung(nguoiDung);</span>
+<span class="fc" id="L192">            NganHang nganHang=new NganHang(1, &quot;scb&quot;, &quot;ngan hang cong thuong&quot;);</span>
+<span class="fc" id="L193">            hoaDon.setNganHang(nganHang);</span>
+<span class="fc" id="L194">            ArrayList &lt;HoaDonChiTiet&gt; dsHoaDonChiTiet=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L195">            String sql=&quot;INSERT INTO tokhaithue (kyTinhThue, thoiGianBatDau, loaiToKhai, doiTuongDong, tienLuong, tienDauTu, tienKinhDoanh, tienBatDongSan, &quot;</span>
+                        + &quot;tienTrungThuong, soNguoiPhuThuoc, tienTuThien, tienDongBaoHiem, tienHuuTri, ngayNop, trangThai, idNguoiDung)\n&quot; +
+                        &quot;VALUES ('Theo tháng', '1/2023', 'Tờ khai lần đầu', 'Cư trú có hợp đồng &gt;= 3 tháng', 0, 0, 0, 0, 0, 0, 0, 0, 0, '2023-01-01', 1, 2)&quot;;
+<span class="fc" id="L198">            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);</span>
+<span class="fc" id="L199">            ps.executeUpdate();</span>
+<span class="fc" id="L200">            ResultSet generatedKeys = ps.getGeneratedKeys();</span>
+<span class="fc" id="L201">            ToKhaiThue toKhaiThue=new ToKhaiThue();</span>
+<span class="pc bpc" id="L202" title="1 of 2 branches missed.">            if (generatedKeys.next()) {</span>
+<span class="fc" id="L203">                toKhaiThue.setId(generatedKeys.getInt(1));</span>
+<span class="fc" id="L204">                HoaDonChiTiet hoaDonChiTiet=new HoaDonChiTiet();</span>
+<span class="fc" id="L205">                hoaDonChiTiet.setToKhaiThue(toKhaiThue);</span>
+<span class="fc" id="L206">                hoaDonChiTiet.setTrangThai(true);</span>
+<span class="fc" id="L207">                dsHoaDonChiTiet.add(hoaDonChiTiet);</span>
+<span class="fc" id="L208">                hoaDon.setDsHoaDonChiTiet(dsHoaDonChiTiet);</span>
+<span class="fc" id="L209">                boolean result=hoaDonDAO.themHoaDon(hoaDon);</span>
+<span class="fc" id="L210">                Assert.assertEquals(result, true);</span>
+<span class="fc" id="L211">                sql=&quot;SELECT id FROM hoadon ORDER BY ngayYeuCau DESC LIMIT 1&quot;;</span>
+<span class="fc" id="L212">                ps=con.prepareStatement(sql);</span>
+<span class="fc" id="L213">                ResultSet rs=ps.executeQuery(sql);</span>
+<span class="pc bpc" id="L214" title="1 of 2 branches missed.">                if(rs.next()){</span>
+<span class="fc" id="L215">                    Assert.assertEquals(hoaDon.getId(), rs.getInt(&quot;id&quot;));</span>
+<span class="fc" id="L216">                    sql=&quot;SELECT idHoaDon FROM tokhaithue WHERE id=&quot;+toKhaiThue.getId();</span>
+<span class="fc" id="L217">                    ps=con.prepareStatement(sql);</span>
+<span class="fc" id="L218">                    rs=ps.executeQuery(sql);</span>
+<span class="pc bpc" id="L219" title="1 of 2 branches missed.">                    if(rs.next()){</span>
+<span class="fc" id="L220">                        Assert.assertEquals(hoaDon.getId(), rs.getInt(&quot;idHoaDon&quot;));</span>
+                    }
+                }
+            }
+<span class="nc" id="L224">        }catch(Exception e){</span>
+<span class="nc" id="L225">            e.printStackTrace();</span>
+        }
+        finally{
+<span class="nc" id="L228">            try{</span>
+<span class="pc" id="L229">                con.rollback();</span>
+<span class="pc" id="L230">                con.setAutoCommit(true);</span>
+            }
+<span class="nc" id="L232">            catch(Exception ex){</span>
+<span class="nc" id="L233">                ex.printStackTrace();</span>
+<span class="pc" id="L234">            }</span>
+<span class="nc" id="L235">        }</span>
+        
+<span class="fc" id="L237">        return;</span>
+    }
+    
+    
+    //Hóa đơn thanh toán cho nhiều hơn 1 kỳ tính thuế.
+    @Test
+    public void testThemHoaDonException5(){
+<span class="fc" id="L244">        Connection con=DAO.con;</span>
+        try{
+<span class="fc" id="L246">            con.setAutoCommit(false);</span>
+<span class="fc" id="L247">            HoaDon hoaDon=new HoaDon();</span>
+<span class="fc" id="L248">            hoaDon.setSoThe(&quot;0123456789&quot;);</span>
+<span class="fc" id="L249">            hoaDon.setTenChuThe(&quot;Vinh&quot;);</span>
+<span class="fc" id="L250">            hoaDon.setCVC(&quot;123&quot;);</span>
+<span class="fc" id="L251">            hoaDon.setThangNamHetHan(new Date());</span>
+<span class="fc" id="L252">            hoaDon.setTienPhaiDong(0);</span>
+<span class="fc" id="L253">            hoaDon.setTrangThai(Boolean.TRUE);</span>
+<span class="fc" id="L254">            hoaDon.setNgayYeuCau(new Date());</span>
+<span class="fc" id="L255">            hoaDon.setNgayThanhToan(new Date());</span>
+<span class="fc" id="L256">            NguoiDung nguoiDung=new NguoiDung();</span>
+<span class="fc" id="L257">            nguoiDung.setId(2);</span>
+<span class="fc" id="L258">            hoaDon.setNguoiDung(nguoiDung);</span>
+<span class="fc" id="L259">            NganHang nganHang=new NganHang(1, &quot;scb&quot;, &quot;ngan hang cong thuong&quot;);</span>
+<span class="fc" id="L260">            hoaDon.setNganHang(nganHang);</span>
+<span class="fc" id="L261">            ArrayList &lt;HoaDonChiTiet&gt; dsHoaDonChiTiet=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L262">            String sql=&quot;INSERT INTO tokhaithue (kyTinhThue, thoiGianBatDau, loaiToKhai, doiTuongDong, tienLuong, tienDauTu, tienKinhDoanh, tienBatDongSan, &quot;</span>
+                        + &quot;tienTrungThuong, soNguoiPhuThuoc, tienTuThien, tienDongBaoHiem, tienHuuTri, ngayNop, trangThai, idNguoiDung)\n&quot; +
+                        &quot;VALUES ('Theo tháng', '1/2023', 'Tờ khai lần đầu', 'Cư trú có hợp đồng &gt;= 3 tháng', 0, 0, 0, 0, 0, 0, 0, 0, 0, '2023-01-01', 1, 2), &quot;
+                    + &quot;('Theo tháng', '2/2023', 'Tờ khai lần đầu', 'Cư trú có hợp đồng &gt;= 3 tháng', 0, 0, 0, 0, 0, 0, 0, 0, 0, '2023-02-01', 1, 2)&quot;;
+<span class="fc" id="L266">            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);</span>
+<span class="fc" id="L267">            ps.executeUpdate();</span>
+<span class="fc" id="L268">            ResultSet generatedKeys = ps.getGeneratedKeys();</span>
+<span class="fc bfc" id="L269" title="All 2 branches covered.">            while (generatedKeys.next()) {</span>
+<span class="fc" id="L270">                ToKhaiThue toKhaiThue=new ToKhaiThue();</span>
+<span class="fc" id="L271">                toKhaiThue.setId(generatedKeys.getInt(1));</span>
+<span class="fc" id="L272">                HoaDonChiTiet hoaDonChiTiet=new HoaDonChiTiet();</span>
+<span class="fc" id="L273">                hoaDonChiTiet.setToKhaiThue(toKhaiThue);</span>
+<span class="fc" id="L274">                hoaDonChiTiet.setTrangThai(true);</span>
+<span class="fc" id="L275">                dsHoaDonChiTiet.add(hoaDonChiTiet);</span>
+<span class="fc" id="L276">                hoaDon.setDsHoaDonChiTiet(dsHoaDonChiTiet);</span>
+<span class="fc" id="L277">            }</span>
+<span class="fc" id="L278">            boolean result=hoaDonDAO.themHoaDon(hoaDon);</span>
+<span class="fc" id="L279">            Assert.assertEquals(result, true);</span>
+<span class="fc" id="L280">            sql=&quot;SELECT id FROM hoadon ORDER BY ngayYeuCau DESC LIMIT 1&quot;;</span>
+<span class="fc" id="L281">            ps=con.prepareStatement(sql);</span>
+<span class="fc" id="L282">            ResultSet rs=ps.executeQuery(sql);</span>
+<span class="pc bpc" id="L283" title="1 of 2 branches missed.">            if(rs.next()){</span>
+<span class="fc" id="L284">                Assert.assertEquals(hoaDon.getId(), rs.getInt(&quot;id&quot;));</span>
+<span class="fc bfc" id="L285" title="All 2 branches covered.">                for(int i=0; i&lt;hoaDon.getDsHoaDonChiTiet().size(); i++){</span>
+<span class="fc" id="L286">                    sql=&quot;SELECT idHoaDon FROM tokhaithue WHERE id=&quot;+hoaDon.getDsHoaDonChiTiet().get(i).getToKhaiThue().getId();</span>
+<span class="fc" id="L287">                    ps=con.prepareStatement(sql);</span>
+<span class="fc" id="L288">                    rs=ps.executeQuery(sql);</span>
+<span class="pc bpc" id="L289" title="1 of 2 branches missed.">                    if(rs.next()){</span>
+<span class="fc" id="L290">                        Assert.assertEquals(hoaDon.getId(), rs.getInt(&quot;idHoaDon&quot;));</span>
+                    }
+                }
+                
+            }
+<span class="nc" id="L295">        }catch(Exception e){</span>
+<span class="nc" id="L296">            e.printStackTrace();</span>
+        }
+        finally{
+<span class="nc" id="L299">            try{</span>
+<span class="pc" id="L300">                con.rollback();</span>
+<span class="pc" id="L301">                con.setAutoCommit(true);</span>
+            }
+<span class="nc" id="L303">            catch(Exception ex){</span>
+<span class="nc" id="L304">                ex.printStackTrace();</span>
+<span class="pc" id="L305">            }</span>
+<span class="nc" id="L306">        }</span>
+        
+<span class="fc" id="L308">        return;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

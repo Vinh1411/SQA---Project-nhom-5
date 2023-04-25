@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NganHangDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;HeThongTinhThue&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">dao</a> &gt; <span class="el_source">NganHangDAO.java</span></div><h1>NganHangDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import static dao.DAO.con;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import model.NganHang;
+import model.ToKhaiThue;
+
+/**
+ *
+ * @author Vinh
+ */
+public class NganHangDAO extends DAO {
+
+    public NganHangDAO() {
+<span class="fc" id="L22">        super();</span>
+<span class="fc" id="L23">    }</span>
+
+    public ArrayList&lt;NganHang&gt; dsNganHang() {
+<span class="fc" id="L26">        String sql = &quot;SELECT * FROM nganhang&quot;;</span>
+<span class="fc" id="L27">        ArrayList&lt;NganHang&gt; ds = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc" id="L29">            PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="fc" id="L30">            ResultSet rs = ps.executeQuery();</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">            while (rs.next()) {</span>
+<span class="fc" id="L32">                NganHang temp=new NganHang(rs.getInt(&quot;id&quot;), rs.getString(&quot;ten&quot;), rs.getString(&quot;moTa&quot;));</span>
+<span class="fc" id="L33">                ds.add(temp);</span>
+<span class="fc" id="L34">            }</span>
+<span class="nc" id="L35">        } catch (Exception e) {</span>
+            
+<span class="fc" id="L37">        }</span>
+<span class="fc" id="L38">        return ds;</span>
+    }
+//    public static void main(String[] args) {
+//        NganHangDAO nganHangDAO=new NganHangDAO();
+//        System.out.println(nganHangDAO.dsNganHang().size());
+//    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

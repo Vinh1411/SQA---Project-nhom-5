@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;HeThongTinhThue&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">dao</a> &gt; <span class="el_source">DAO.java</span></div><h1>DAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+/**
+ *
+ * @author Vinh
+ */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+ 
+public class DAO {
+    public static Connection con;
+    
+<span class="fc" id="L19">    public DAO(){</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        if(con == null){</span>
+<span class="fc" id="L21">            String dbUrl = &quot;jdbc:mysql://localhost:3306/hethongtinhthue?autoReconnect=true&amp;useSSL=false&quot;;</span>
+<span class="fc" id="L22">            String dbClass = &quot;com.mysql.cj.jdbc.Driver&quot;;</span>
+ 
+            try {
+<span class="fc" id="L25">                Class.forName(dbClass);</span>
+<span class="fc" id="L26">                con = DriverManager.getConnection (dbUrl, &quot;root&quot;, &quot;vinhcoi123&quot;);</span>
+<span class="nc" id="L27">            }catch(ClassNotFoundException | SQLException e) {</span>
+<span class="nc" id="L28">                e.printStackTrace();</span>
+<span class="fc" id="L29">            }</span>
+        }
+<span class="fc" id="L31">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

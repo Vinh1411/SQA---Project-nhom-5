@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NguoiDongThue.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;HeThongTinhThue&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">NguoiDongThue.java</span></div><h1>NguoiDongThue.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package model;
+
+import java.util.Date;
+
+/**
+ *
+ * @author Vinh
+ */
+public class NguoiDongThue extends NguoiYeuCau{
+    
+    protected int maSoThue;
+    
+    public NguoiDongThue(int id, String ten, String email, Date ngayThangNamSinh, String gioiTinh, String quocTich, String diaChiCuTru, String dienThoai, GiayToCaNhan giayTo, DiaChi diaChi, int maSoThue) {
+<span class="nc" id="L19">        super(id, ten, email, ngayThangNamSinh, gioiTinh, quocTich, diaChiCuTru, dienThoai, giayTo, diaChi);</span>
+<span class="nc" id="L20">        this.maSoThue=maSoThue;</span>
+<span class="nc" id="L21">    }</span>
+    
+<span class="fc" id="L23">    public NguoiDongThue(){</span>
+        
+<span class="fc" id="L25">    }</span>
+
+    public int getMaSoThue() {
+<span class="nc" id="L28">        return maSoThue;</span>
+    }
+
+    public void setMaSoThue(int maSoThue) {
+<span class="nc" id="L32">        this.maSoThue = maSoThue;</span>
+<span class="nc" id="L33">    }</span>
+
+    public String getTen() {
+<span class="nc" id="L36">        return ten;</span>
+    }
+
+    public void setTen(String ten) {
+<span class="nc" id="L40">        this.ten = ten;</span>
+<span class="nc" id="L41">    }</span>
+
+    public Date getNgayThangNamSinh() {
+<span class="nc" id="L44">        return ngayThangNamSinh;</span>
+    }
+
+    public void setNgayThangNamSinh(Date ngayThangNamSinh) {
+<span class="nc" id="L48">        this.ngayThangNamSinh = ngayThangNamSinh;</span>
+<span class="nc" id="L49">    }</span>
+
+    public String getGioiTinh() {
+<span class="nc" id="L52">        return gioiTinh;</span>
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+<span class="nc" id="L56">        this.gioiTinh = gioiTinh;</span>
+<span class="nc" id="L57">    }</span>
+
+    public String getQuocTich() {
+<span class="nc" id="L60">        return quocTich;</span>
+    }
+
+    public void setQuocTich(String quocTich) {
+<span class="nc" id="L64">        this.quocTich = quocTich;</span>
+<span class="nc" id="L65">    }</span>
+
+    public String getDiaChiCuTru() {
+<span class="nc" id="L68">        return diaChiCuTru;</span>
+    }
+
+    public void setDiaChiCuTru(String diaChiCuTru) {
+<span class="nc" id="L72">        this.diaChiCuTru = diaChiCuTru;</span>
+<span class="nc" id="L73">    }</span>
+
+    public GiayToCaNhan getGiayTo() {
+<span class="nc" id="L76">        return giayTo;</span>
+    }
+
+    public void setGiayTo(GiayToCaNhan giayTo) {
+<span class="nc" id="L80">        this.giayTo = giayTo;</span>
+<span class="nc" id="L81">    }</span>
+
+    public DiaChi getDiaChi() {
+<span class="nc" id="L84">        return diaChi;</span>
+    }
+
+    public void setDiaChi(DiaChi diaChi) {
+<span class="nc" id="L88">        this.diaChi = diaChi;</span>
+<span class="nc" id="L89">    }</span>
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

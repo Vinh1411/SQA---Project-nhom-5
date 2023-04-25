@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ToKhaiThue.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;HeThongTinhThue&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">ToKhaiThue.java</span></div><h1>ToKhaiThue.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package model;
+
+import java.util.Date;
+
+/**
+ *
+ * @author Vinh
+ */
+public class ToKhaiThue {
+    private int id;
+    private String kyTinhThue;
+    private String thoiGianBatDau;
+    private String loaiToKhai;
+    private String doiTuongDong;
+    private int tienLuong;
+    private int tienDauTu;
+    private int tienKinhDoanh;
+    private int tienBatDongSan;
+    private int tienTrungThuong;
+    private int soNguoiPhuThuoc;
+    private int tienTuThien;
+    private int tienDongBaoHiem;
+    private int tienHuuTri;
+    private Date ngayNop;
+    private Boolean trangThai;
+    private NguoiDung nguoiDung;
+    
+<span class="nc" id="L33">    public ToKhaiThue(int id, String kyTinhThue, String thoiGianBatDau, String loaiToKhai, int tienLuong, int tienDauTu, int tienKinhDoanh, int tienBatDongSan, int tienTrungThuong, int soNguoiPhuThuoc, int tienTuThien, int tienDongBaoHiem, int tienHuuTri, Date ngayNop, Boolean trangThai, NguoiDung nguoiDung) {</span>
+<span class="nc" id="L34">        this.id = id;</span>
+<span class="nc" id="L35">        this.kyTinhThue = kyTinhThue;</span>
+<span class="nc" id="L36">        this.thoiGianBatDau = thoiGianBatDau;</span>
+<span class="nc" id="L37">        this.loaiToKhai = loaiToKhai;</span>
+<span class="nc" id="L38">        this.doiTuongDong = &quot;TTNCN voi CN&quot;;</span>
+<span class="nc" id="L39">        this.tienLuong = tienLuong;</span>
+<span class="nc" id="L40">        this.tienDauTu = tienDauTu;</span>
+<span class="nc" id="L41">        this.tienKinhDoanh = tienKinhDoanh;</span>
+<span class="nc" id="L42">        this.tienBatDongSan = tienBatDongSan;</span>
+<span class="nc" id="L43">        this.tienTrungThuong = tienTrungThuong;</span>
+<span class="nc" id="L44">        this.soNguoiPhuThuoc = soNguoiPhuThuoc;</span>
+<span class="nc" id="L45">        this.tienTuThien = tienTuThien;</span>
+<span class="nc" id="L46">        this.tienDongBaoHiem = tienDongBaoHiem;</span>
+<span class="nc" id="L47">        this.tienHuuTri = tienHuuTri;</span>
+<span class="nc" id="L48">        this.ngayNop = ngayNop;</span>
+<span class="nc" id="L49">        this.trangThai = trangThai;</span>
+<span class="nc" id="L50">        this.nguoiDung = nguoiDung;</span>
+<span class="nc" id="L51">    }</span>
+
+<span class="fc" id="L53">    public ToKhaiThue(){</span>
+        
+<span class="fc" id="L55">    }</span>
+    
+    public int getId() {
+<span class="fc" id="L58">        return id;</span>
+    }
+
+    public void setId(int id) {
+<span class="fc" id="L62">        this.id = id;</span>
+<span class="fc" id="L63">    }</span>
+
+    public String getKyTinhThue() {
+<span class="nc" id="L66">        return kyTinhThue;</span>
+    }
+
+    public void setKyTinhThue(String kyTinhThue) {
+<span class="fc" id="L70">        this.kyTinhThue = kyTinhThue;</span>
+<span class="fc" id="L71">    }</span>
+
+    public String getThoiGianBatDau() {
+<span class="nc" id="L74">        return thoiGianBatDau;</span>
+    }
+
+    public void setThoiGianBatDau(String thoiGianBatDau) {
+<span class="fc" id="L78">        this.thoiGianBatDau = thoiGianBatDau;</span>
+<span class="fc" id="L79">    }</span>
+
+    public String getLoaiToKhai() {
+<span class="nc" id="L82">        return loaiToKhai;</span>
+    }
+
+    public void setLoaiToKhai(String loaiToKhai) {
+<span class="fc" id="L86">        this.loaiToKhai = loaiToKhai;</span>
+<span class="fc" id="L87">    }</span>
+
+    public String getDoiTuongDong() {
+<span class="nc" id="L90">        return doiTuongDong;</span>
+    }
+
+    public void setDoiTuongDong(String doiTuongDong) {
+<span class="fc" id="L94">        this.doiTuongDong = doiTuongDong;</span>
+<span class="fc" id="L95">    }</span>
+
+    public int getTienLuong() {
+<span class="nc" id="L98">        return tienLuong;</span>
+    }
+
+    public void setTienLuong(int tienLuong) {
+<span class="fc" id="L102">        this.tienLuong = tienLuong;</span>
+<span class="fc" id="L103">    }</span>
+
+    public int getTienDauTu() {
+<span class="nc" id="L106">        return tienDauTu;</span>
+    }
+
+    public void setTienDauTu(int tienDauTu) {
+<span class="fc" id="L110">        this.tienDauTu = tienDauTu;</span>
+<span class="fc" id="L111">    }</span>
+
+    public int getTienKinhDoanh() {
+<span class="nc" id="L114">        return tienKinhDoanh;</span>
+    }
+
+    public void setTienKinhDoanh(int tienKinhDoanh) {
+<span class="fc" id="L118">        this.tienKinhDoanh = tienKinhDoanh;</span>
+<span class="fc" id="L119">    }</span>
+
+    public int getTienBatDongSan() {
+<span class="nc" id="L122">        return tienBatDongSan;</span>
+    }
+
+    public void setTienBatDongSan(int tienBatDongSan) {
+<span class="fc" id="L126">        this.tienBatDongSan = tienBatDongSan;</span>
+<span class="fc" id="L127">    }</span>
+
+    public int getTienTrungThuong() {
+<span class="nc" id="L130">        return tienTrungThuong;</span>
+    }
+
+    public void setTienTrungThuong(int tienTrungThuong) {
+<span class="fc" id="L134">        this.tienTrungThuong = tienTrungThuong;</span>
+<span class="fc" id="L135">    }</span>
+
+    public int getSoNguoiPhuThuoc() {
+<span class="nc" id="L138">        return soNguoiPhuThuoc;</span>
+    }
+
+    public void setSoNguoiPhuThuoc(int soNguoiPhuThuoc) {
+<span class="fc" id="L142">        this.soNguoiPhuThuoc = soNguoiPhuThuoc;</span>
+<span class="fc" id="L143">    }</span>
+
+    public int getTienTuThien() {
+<span class="nc" id="L146">        return tienTuThien;</span>
+    }
+
+    public void setTienTuThien(int tienTuThien) {
+<span class="fc" id="L150">        this.tienTuThien = tienTuThien;</span>
+<span class="fc" id="L151">    }</span>
+
+    public int getTienDongBaoHiem() {
+<span class="nc" id="L154">        return tienDongBaoHiem;</span>
+    }
+
+    public void setTienDongBaoHiem(int tienDongBaoHiem) {
+<span class="fc" id="L158">        this.tienDongBaoHiem = tienDongBaoHiem;</span>
+<span class="fc" id="L159">    }</span>
+
+    public int getTienHuuTri() {
+<span class="nc" id="L162">        return tienHuuTri;</span>
+    }
+
+    public void setTienHuuTri(int tienHuuTri) {
+<span class="fc" id="L166">        this.tienHuuTri = tienHuuTri;</span>
+<span class="fc" id="L167">    }</span>
+
+    public Date getNgayNop() {
+<span class="nc" id="L170">        return ngayNop;</span>
+    }
+
+    public void setNgayNop(Date ngayNop) {
+<span class="fc" id="L174">        this.ngayNop = ngayNop;</span>
+<span class="fc" id="L175">    }</span>
+
+    public Boolean getTrangThai() {
+<span class="nc" id="L178">        return trangThai;</span>
+    }
+
+    public void setTrangThai(Boolean trangThai) {
+<span class="nc" id="L182">        this.trangThai = trangThai;</span>
+<span class="nc" id="L183">    }</span>
+
+    public NguoiDung getNguoiDung() {
+<span class="fc" id="L186">        return nguoiDung;</span>
+    }
+
+    public void setNguoiDung(NguoiDung nguoiDung) {
+<span class="fc" id="L190">        this.nguoiDung = nguoiDung;</span>
+<span class="fc" id="L191">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

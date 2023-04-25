@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ToKhaiThueDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;HeThongTinhThue&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">dao</a> &gt; <span class="el_source">ToKhaiThueDAO.java</span></div><h1>ToKhaiThueDAO.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import static dao.DAO.con;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import model.BieuMauTinhThue;
+import model.NguoiDung;
+import model.ToKhaiThue;
+
+/**
+ *
+ * @author Vinh
+ */
+public class ToKhaiThueDAO extends DAO{
+    public ToKhaiThueDAO(){
+<span class="fc" id="L22">        super();</span>
+<span class="fc" id="L23">    }</span>
+    
+    public ArrayList&lt;ToKhaiThue&gt; danhSachToKhaiChuaDong(int idNguoiDung){
+<span class="fc" id="L26">        ArrayList &lt;ToKhaiThue&gt; ds=new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L27">        String sql = &quot;SELECT * FROM tokhaithue, nguoidung WHERE idHoaDon IS NULL\n&quot; +</span>
+                    &quot;AND idNguoiDung=idNguoiDongThue AND idNguoiDongThue=?&quot;;
+        try {
+<span class="fc" id="L30">            PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="fc" id="L31">            ps.setInt(1, idNguoiDung);</span>
+<span class="fc" id="L32">            ResultSet rs = ps.executeQuery();</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">            while (rs.next()) {</span>
+<span class="fc" id="L34">                ToKhaiThue temp=new ToKhaiThue();</span>
+<span class="fc" id="L35">                temp.setId(rs.getInt(&quot;id&quot;));</span>
+<span class="fc" id="L36">                temp.setKyTinhThue(rs.getString(&quot;kyTinhThue&quot;));</span>
+<span class="fc" id="L37">                temp.setThoiGianBatDau(rs.getString(&quot;thoiGianBatDau&quot;));</span>
+<span class="fc" id="L38">                temp.setLoaiToKhai(rs.getString(&quot;loaiToKhai&quot;));</span>
+<span class="fc" id="L39">                temp.setDoiTuongDong(rs.getString(&quot;doiTuongDong&quot;));</span>
+<span class="fc" id="L40">                temp.setTienLuong(rs.getInt(&quot;tienLuong&quot;));</span>
+<span class="fc" id="L41">                temp.setTienDauTu(rs.getInt(&quot;tienDauTu&quot;));</span>
+<span class="fc" id="L42">                temp.setTienKinhDoanh(rs.getInt(&quot;tienKinhDoanh&quot;));</span>
+<span class="fc" id="L43">                temp.setTienBatDongSan(rs.getInt(&quot;tienBatDongSan&quot;));</span>
+<span class="fc" id="L44">                temp.setTienTrungThuong(rs.getInt(&quot;tienTrungThuong&quot;));</span>
+<span class="fc" id="L45">                temp.setSoNguoiPhuThuoc(rs.getInt(&quot;soNguoiPhuThuoc&quot;));</span>
+<span class="fc" id="L46">                temp.setTienTuThien(rs.getInt(&quot;tienTuThien&quot;));</span>
+<span class="fc" id="L47">                temp.setTienDongBaoHiem(rs.getInt(&quot;tienDongBaoHiem&quot;));</span>
+<span class="fc" id="L48">                temp.setTienHuuTri(rs.getInt(&quot;tienHuuTri&quot;));</span>
+<span class="fc" id="L49">                temp.setNgayNop(rs.getDate(&quot;ngayNop&quot;));</span>
+<span class="fc" id="L50">                ds.add(temp);</span>
+<span class="fc" id="L51">            }</span>
+<span class="nc" id="L52">        } catch (Exception e) {</span>
+<span class="nc" id="L53">            e.printStackTrace();</span>
+<span class="fc" id="L54">        }</span>
+<span class="fc" id="L55">        return ds;</span>
+    }
+    
+    public boolean layThongTinToKhaiThue(ToKhaiThue toKhaiThue){
+<span class="fc" id="L59">        String sql = &quot;SELECT ten, maSoThue FROM tokhaithue, nguoidung, nguoiyeucau, nguoidongthue\n&quot; +</span>
+                    &quot;WHERE tokhaithue.idNguoiDung=nguoidung.idNguoiDongThue\n&quot; +
+                    &quot;AND nguoidung.idNguoiDongThue=nguoidongthue.idNguoiYeuCau\n&quot; +
+                    &quot;AND nguoidongthue.idNguoiYeuCau=nguoiyeucau.id\n&quot; +
+                    &quot;AND tokhaithue.id=?&quot;;
+        try {
+<span class="fc" id="L65">            PreparedStatement ps = con.prepareStatement(sql);</span>
+<span class="fc" id="L66">            ps.setInt(1, toKhaiThue.getId());</span>
+<span class="fc" id="L67">            ResultSet rs = ps.executeQuery();</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">            if (rs.next()) {</span>
+<span class="fc" id="L69">                NguoiDung nguoiDung=new NguoiDung();</span>
+<span class="fc" id="L70">                nguoiDung.setMaSoThue(rs.getInt(&quot;maSoThue&quot;));</span>
+<span class="fc" id="L71">                nguoiDung.setTen(rs.getString(&quot;ten&quot;));</span>
+<span class="fc" id="L72">                toKhaiThue.setNguoiDung(nguoiDung);</span>
+            }
+<span class="nc" id="L74">        } catch (Exception e) {</span>
+<span class="nc" id="L75">            e.printStackTrace();</span>
+<span class="nc" id="L76">            return false;</span>
+<span class="fc" id="L77">        }</span>
+<span class="fc" id="L78">        return true;</span>
+    }
+    
+//    public static void main(String[] args) {
+//        ToKhaiThueDAO dao=new ToKhaiThueDAO();
+////        ToKhaiThue toKhaiThue=new ToKhaiThue();
+////        toKhaiThue.setId(1);
+////        dao.layThongTinToKhaiThue(toKhaiThue);
+////        System.out.println(toKhaiThue.getNguoiDung().getTen());
+//        ArrayList &lt;ToKhaiThue&gt; ds=dao.danhSachToKhaiChuaDong(1);
+//        BieuMauTinhThue temp=new BieuMauTinhThue(ds.get(0));
+//        System.out.println(temp.getToKhaiThue().getDoiTuongDong());
+//        System.out.println(temp.getToKhaiThue().getDoiTuongDong().compareTo(&quot;Cư trú có hợp đồng &gt;= 3 tháng&quot;));
+//    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DangKiMSTServlet.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;HeThongTinhThue&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">controller</a> &gt; <span class="el_source">DangKiMSTServlet.java</span></div><h1>DangKiMSTServlet.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller;
+
+import dao.ToKhaiMSTDAO;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.DiaChi;
+import model.GiayToCaNhan;
+import model.NguoiDung;
+import model.NguoiYeuCau;
+import model.ToKhaiDangKiMST;
+
+/**
+ *
+ * @author Vinh
+ */
+<span class="nc" id="L31">public class DangKiMSTServlet extends HttpServlet {</span>
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+<span class="nc" id="L36">        HttpSession session = request.getSession();</span>
+<span class="nc" id="L37">        String action = request.getParameter(&quot;action&quot;);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (action.compareTo(&quot;0&quot;) == 0) { //Vao lan dau trang 1</span>
+<span class="nc" id="L39">            GiayToCaNhan giayTo = new GiayToCaNhan();</span>
+<span class="nc" id="L40">            DiaChi diaChi = new DiaChi();</span>
+<span class="nc" id="L41">            NguoiYeuCau nguoiYeuCau = new NguoiYeuCau();</span>
+<span class="nc" id="L42">            nguoiYeuCau.setGiayTo(giayTo);</span>
+<span class="nc" id="L43">            nguoiYeuCau.setDiaChi(diaChi);</span>
+<span class="nc" id="L44">            ToKhaiDangKiMST toKhai = new ToKhaiDangKiMST();</span>
+<span class="nc" id="L45">            toKhai.setNguoiYeuCau(nguoiYeuCau);</span>
+<span class="nc" id="L46">            session.setAttribute(&quot;toKhai&quot;, toKhai);</span>
+<span class="nc" id="L47">            String url = &quot;/dangKiMST1.jsp&quot;;</span>
+<span class="nc" id="L48">            getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+<span class="nc" id="L49">        } else {</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            if (action.compareTo(&quot;1&quot;) == 0) { //nut tiep tuc tren trang 1</span>
+<span class="nc" id="L51">                ToKhaiDangKiMST toKhai = (ToKhaiDangKiMST) session.getAttribute(&quot;toKhai&quot;);</span>
+<span class="nc" id="L52">                toKhai.getNguoiYeuCau().setTen(request.getParameter(&quot;ten&quot;));</span>
+<span class="nc" id="L53">                toKhai.getNguoiYeuCau().getGiayTo().setLoai(request.getParameter(&quot;loaiGiayTo&quot;));</span>
+<span class="nc" id="L54">                toKhai.getNguoiYeuCau().getGiayTo().setSoGiayTo(request.getParameter(&quot;soGiayTo&quot;));</span>
+<span class="nc" id="L55">                SimpleDateFormat formatter = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+                try {
+<span class="nc" id="L57">                    Date date = formatter.parse(request.getParameter(&quot;ngayCap&quot;));</span>
+<span class="nc" id="L58">                    toKhai.getNguoiYeuCau().getGiayTo().setNgayCap(date);</span>
+<span class="nc" id="L59">                } catch (ParseException ex) {</span>
+<span class="nc" id="L60">                    Logger.getLogger(DangKiMSTServlet.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L61">                }</span>
+<span class="nc" id="L62">                toKhai.getNguoiYeuCau().setEmail(request.getParameter(&quot;email&quot;));</span>
+<span class="nc" id="L63">                session.setAttribute(&quot;toKhai&quot;, toKhai);</span>
+<span class="nc" id="L64">                String url = &quot;/dangKiMST2.jsp&quot;;</span>
+<span class="nc" id="L65">                getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+<span class="nc" id="L66">            } else {</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">                if (action.compareTo(&quot;2&quot;) == 0) { //nut quay ve trang 1</span>
+<span class="nc" id="L68">                    String url = &quot;/index.jsp&quot;;</span>
+<span class="nc" id="L69">                    getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+<span class="nc" id="L70">                } else { //nut quay ve o trang 2</span>
+<span class="nc" id="L71">                    String url = &quot;/dangKiMST1.jsp&quot;;</span>
+<span class="nc" id="L72">                    getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+
+                }
+            }
+
+        }
+
+//        String url = &quot;/dangKiMS.jsp&quot;;
+//        getServletContext().getRequestDispatcher(url).forward(request, response);
+<span class="nc" id="L81">    }</span>
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+<span class="nc" id="L86">        HttpSession session = request.getSession();</span>
+<span class="nc" id="L87">        ToKhaiDangKiMST toKhai = (ToKhaiDangKiMST) session.getAttribute(&quot;toKhai&quot;);</span>
+<span class="nc" id="L88">        SimpleDateFormat formatter = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span>
+        try {
+<span class="nc" id="L90">            Date date = formatter.parse(request.getParameter(&quot;ngaySinh&quot;));</span>
+<span class="nc" id="L91">            toKhai.getNguoiYeuCau().setNgayThangNamSinh(date);</span>
+<span class="nc" id="L92">        } catch (ParseException ex) {</span>
+<span class="nc" id="L93">            Logger.getLogger(DangKiMSTServlet.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L94">        }</span>
+<span class="nc" id="L95">        toKhai.getNguoiYeuCau().setGioiTinh(request.getParameter(&quot;gioiTinh&quot;));</span>
+<span class="nc" id="L96">        toKhai.getNguoiYeuCau().getGiayTo().setCoQuanCap(request.getParameter(&quot;coQuanCap&quot;));</span>
+<span class="nc" id="L97">        toKhai.getNguoiYeuCau().getDiaChi().setSoNha(request.getParameter(&quot;soNha&quot;));</span>
+<span class="nc" id="L98">        toKhai.getNguoiYeuCau().getDiaChi().setThanhPho(request.getParameter(&quot;thanhPho&quot;));</span>
+<span class="nc" id="L99">        toKhai.getNguoiYeuCau().getDiaChi().setQuanHuyen(request.getParameter(&quot;quanHuyen&quot;));</span>
+<span class="nc" id="L100">        toKhai.getNguoiYeuCau().setDiaChiCuTru(request.getParameter(&quot;diaChiCuTru&quot;));</span>
+<span class="nc" id="L101">        toKhai.getNguoiYeuCau().setDienThoai(request.getParameter(&quot;dienThoai&quot;));</span>
+<span class="nc" id="L102">        toKhai.setMaSoThueCoQuanChiTra(request.getParameter(&quot;coQuanChiTra&quot;));</span>
+<span class="nc" id="L103">        toKhai.setNgayNop(new Date());</span>
+<span class="nc" id="L104">        toKhai.setTrangThai(false);</span>
+<span class="nc" id="L105">        ToKhaiMSTDAO toKhaiDAO=new ToKhaiMSTDAO();</span>
+<span class="nc" id="L106">        boolean result=toKhaiDAO.themToKhai(toKhai);</span>
+<span class="nc" id="L107">        session.setAttribute(&quot;toKhai&quot;, toKhai);</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        if(result==true){</span>
+<span class="nc" id="L109">            String thongBao=&quot;Nộp tờ khai thành công!&quot;;</span>
+<span class="nc" id="L110">            session.setAttribute(&quot;thongBao&quot;, thongBao);</span>
+<span class="nc" id="L111">            String url = &quot;/index.jsp&quot;;</span>
+<span class="nc" id="L112">            getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+<span class="nc" id="L113">        }</span>
+        else{
+<span class="nc" id="L115">            String url = &quot;/dangKiMST2.jsp&quot;;</span>
+<span class="nc" id="L116">            getServletContext().getRequestDispatcher(url).forward(request, response);</span>
+        }
+        
+<span class="nc" id="L119">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

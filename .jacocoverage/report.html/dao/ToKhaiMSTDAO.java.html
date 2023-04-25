@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ToKhaiMSTDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;HeThongTinhThue&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">dao</a> &gt; <span class="el_source">ToKhaiMSTDAO.java</span></div><h1>ToKhaiMSTDAO.java</h1><pre class="source lang-java linenums">package dao;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import model.ToKhaiDangKiMST;
+
+/**
+ *
+ * @author Vinh
+ */
+public class ToKhaiMSTDAO extends DAO{
+    public ToKhaiMSTDAO(){
+<span class="fc" id="L15">        super();</span>
+<span class="fc" id="L16">    }</span>
+    public boolean themToKhai(ToKhaiDangKiMST toKhai){
+<span class="fc" id="L18">        String sqlDiaChi = &quot;INSERT INTO diaChi (soNha, quocGia, thanhPho, quanHuyen) VALUES(?, 'Viet Nam', ?, ?)&quot;;</span>
+<span class="fc" id="L19">        String sqlGiayTo = &quot;INSERT INTO giaytocanhan (loai, ngayCap, soGiayTo, coQuanCap) VALUES (?, ?, ?, ?)&quot;;</span>
+<span class="fc" id="L20">        String sqlNguoiYeuCau = &quot;INSERT INTO nguoiyeucau (ten, email, ngayThangNamSinh, gioiTinh, quocTich, diaChiCuTru, dienThoai, idGiayToCaNhan, idDiaChi)\n&quot;</span>
+                + &quot;VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)&quot;;
+<span class="fc" id="L22">        String sqlToKhai = &quot;INSERT INTO tokhaidangkimst (maSoThuCoQuanChiTra, ngayNop, trangThai, idNguoiYeuCau)\n&quot;</span>
+                + &quot;VALUES (?, ?, ?, ?)&quot;;
+        PreparedStatement ps;
+<span class="fc" id="L25">        boolean result = true;</span>
+        try {
+            //con.setAutoCommit(false);
+<span class="fc" id="L28">            ps = con.prepareStatement(sqlDiaChi, Statement.RETURN_GENERATED_KEYS);</span>
+<span class="fc" id="L29">            ps.setString(1, toKhai.getNguoiYeuCau().getDiaChi().getSoNha());</span>
+<span class="fc" id="L30">            ps.setString(2, toKhai.getNguoiYeuCau().getDiaChi().getThanhPho());</span>
+<span class="fc" id="L31">            ps.setString(3, toKhai.getNguoiYeuCau().getDiaChi().getQuanHuyen());</span>
+<span class="fc" id="L32">            ps.executeUpdate();</span>
+<span class="fc" id="L33">            ResultSet generatedKeys = ps.getGeneratedKeys();</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">            if (generatedKeys.next()) {</span>
+<span class="fc" id="L35">                toKhai.getNguoiYeuCau().getDiaChi().setId(generatedKeys.getInt(1));</span>
+<span class="fc" id="L36">                ps = con.prepareStatement(sqlGiayTo, Statement.RETURN_GENERATED_KEYS);</span>
+<span class="fc" id="L37">                ps.setString(1, toKhai.getNguoiYeuCau().getGiayTo().getLoai());</span>
+<span class="fc" id="L38">                java.util.Date utilDate = toKhai.getNguoiYeuCau().getGiayTo().getNgayCap();</span>
+<span class="fc" id="L39">                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());</span>
+<span class="fc" id="L40">                ps.setDate(2, sqlDate);</span>
+<span class="fc" id="L41">                ps.setString(3, toKhai.getNguoiYeuCau().getGiayTo().getSoGiayTo());</span>
+<span class="fc" id="L42">                ps.setString(4, toKhai.getNguoiYeuCau().getGiayTo().getCoQuanCap());</span>
+<span class="fc" id="L43">                ps.executeUpdate();</span>
+<span class="fc" id="L44">                generatedKeys = ps.getGeneratedKeys();</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">                if(generatedKeys.next()){</span>
+<span class="fc" id="L46">                    toKhai.getNguoiYeuCau().getGiayTo().setId(generatedKeys.getInt(1));</span>
+<span class="fc" id="L47">                    ps = con.prepareStatement(sqlNguoiYeuCau, Statement.RETURN_GENERATED_KEYS);</span>
+<span class="fc" id="L48">                    ps.setString(1, toKhai.getNguoiYeuCau().getTen());</span>
+<span class="fc" id="L49">                    ps.setString(2, toKhai.getNguoiYeuCau().getEmail());</span>
+<span class="fc" id="L50">                    utilDate = toKhai.getNguoiYeuCau().getNgayThangNamSinh();</span>
+<span class="fc" id="L51">                    sqlDate = new java.sql.Date(utilDate.getTime());</span>
+<span class="fc" id="L52">                    ps.setDate(3, sqlDate);</span>
+<span class="fc" id="L53">                    ps.setString(4, toKhai.getNguoiYeuCau().getGioiTinh());</span>
+<span class="fc" id="L54">                    ps.setString(5, &quot;Viet Nam&quot;);</span>
+<span class="fc" id="L55">                    ps.setString(6, toKhai.getNguoiYeuCau().getDiaChiCuTru());</span>
+<span class="fc" id="L56">                    ps.setString(7, toKhai.getNguoiYeuCau().getDienThoai());</span>
+<span class="fc" id="L57">                    ps.setInt(8, toKhai.getNguoiYeuCau().getGiayTo().getId());</span>
+<span class="fc" id="L58">                    ps.setInt(9, toKhai.getNguoiYeuCau().getDiaChi().getId());</span>
+<span class="fc" id="L59">                    ps.executeUpdate();</span>
+<span class="fc" id="L60">                    generatedKeys = ps.getGeneratedKeys();</span>
+<span class="pc bpc" id="L61" title="1 of 2 branches missed.">                    if(generatedKeys.next()){</span>
+<span class="fc" id="L62">                        toKhai.getNguoiYeuCau().setId(generatedKeys.getInt(1));</span>
+<span class="fc" id="L63">                        ps = con.prepareStatement(sqlToKhai, Statement.RETURN_GENERATED_KEYS);</span>
+<span class="fc" id="L64">                        ps.setString(1, toKhai.getMaSoThueCoQuanChiTra());</span>
+<span class="fc" id="L65">                        utilDate = toKhai.getNgayNop();</span>
+<span class="fc" id="L66">                        sqlDate = new java.sql.Date(utilDate.getTime());</span>
+<span class="fc" id="L67">                        ps.setDate(2, sqlDate);</span>
+<span class="fc" id="L68">                        ps.setBoolean(3, toKhai.getTrangThai());</span>
+<span class="fc" id="L69">                        ps.setInt(4, toKhai.getNguoiYeuCau().getId());</span>
+<span class="fc" id="L70">                        ps.executeUpdate();</span>
+<span class="fc" id="L71">                        generatedKeys = ps.getGeneratedKeys();</span>
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">                        if(generatedKeys.next()){</span>
+<span class="fc" id="L73">                            toKhai.setId(generatedKeys.getInt(1));</span>
+                            //con.commit();
+                        }
+                    }
+                }
+            }
+<span class="fc" id="L79">        } catch (Exception e1) {</span>
+<span class="fc" id="L80">            result = false;</span>
+//            try{
+//                con.rollback();
+//            }
+//            catch(SQLException e2){
+//                e2.printStackTrace();
+//            }
+//            e1.printStackTrace();
+<span class="nc" id="L88">        }finally{</span>
+//            try{
+//               con.setAutoCommit(true);
+//            }catch(Exception e3){
+//                e3.printStackTrace();
+//            }
+<span class="pc" id="L94">        }</span>
+<span class="fc" id="L95">        return result;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

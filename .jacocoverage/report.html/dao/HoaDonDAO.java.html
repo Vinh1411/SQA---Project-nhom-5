@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>HoaDonDAO.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;HeThongTinhThue&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">dao</a> &gt; <span class="el_source">HoaDonDAO.java</span></div><h1>HoaDonDAO.java</h1><pre class="source lang-java linenums">package dao;
+
+import static dao.DAO.con;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import model.HoaDon;
+import model.HoaDonChiTiet;
+
+/**
+ *
+ * @author Vinh
+ */
+public class HoaDonDAO extends DAO{
+    public HoaDonDAO(){
+<span class="fc" id="L18">        super();</span>
+<span class="fc" id="L19">    }</span>
+    
+    public boolean themHoaDon(HoaDon hoaDon){
+<span class="fc" id="L22">        String sqlHoaDon = &quot;INSERT INTO hoadon (soThe, tenChuThe, cvc, thangNamHetHan, tienPhaiDong, trangThai, ngayYeuCau, idNguoiDung, idNganHang) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)&quot;;</span>
+<span class="fc" id="L23">        String sqlHoaDonChiTiet = &quot;UPDATE tokhaithue SET idHoaDon=? WHERE id=?&quot;;</span>
+<span class="fc" id="L24">        boolean result = true;</span>
+        try {
+            //con.setAutoCommit(false);
+<span class="fc" id="L27">            PreparedStatement ps = con.prepareStatement(sqlHoaDon, Statement.RETURN_GENERATED_KEYS);</span>
+<span class="fc" id="L28">            ps.setString(1, hoaDon.getSoThe());</span>
+<span class="fc" id="L29">            ps.setString(2, hoaDon.getTenChuThe());</span>
+<span class="fc" id="L30">            ps.setString(3, hoaDon.getCVC());</span>
+<span class="fc" id="L31">            ps.setDate(4, new java.sql.Date(hoaDon.getThangNamHetHan().getTime()));</span>
+<span class="fc" id="L32">            ps.setInt(5, hoaDon.getTienPhaiDong());</span>
+<span class="fc" id="L33">            ps.setBoolean(6, false);</span>
+<span class="fc" id="L34">            java.util.Date utilDate = new java.util.Date();</span>
+<span class="fc" id="L35">            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());</span>
+<span class="fc" id="L36">            ps.setDate(7, sqlDate);</span>
+<span class="fc" id="L37">            ps.setInt(8, hoaDon.getNguoiDung().getId());</span>
+<span class="fc" id="L38">            ps.setInt(9, hoaDon.getNganHang().getId());</span>
+<span class="fc" id="L39">            ps.executeUpdate();</span>
+<span class="fc" id="L40">            ResultSet generatedKeys = ps.getGeneratedKeys();</span>
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">            if (generatedKeys.next()) {</span>
+<span class="fc" id="L42">                hoaDon.setId(generatedKeys.getInt(1));</span>
+<span class="pc bpc" id="L43" title="1 of 4 branches missed.">                if(hoaDon.getDsHoaDonChiTiet()==null || hoaDon.getDsHoaDonChiTiet().size()==0){</span>
+<span class="fc" id="L44">                    result=false;</span>
+<span class="fc" id="L45">                    con.rollback();</span>
+                }else{
+<span class="fc bfc" id="L47" title="All 2 branches covered.">                    for (HoaDonChiTiet hoaDonChiTiet : hoaDon.getDsHoaDonChiTiet()) {</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">                        if(hoaDonChiTiet.isTrangThai()==true){</span>
+<span class="fc" id="L49">                            ps = con.prepareStatement(sqlHoaDonChiTiet);</span>
+<span class="fc" id="L50">                            ps.setInt(1, hoaDon.getId());</span>
+<span class="fc" id="L51">                            ps.setInt(2, hoaDonChiTiet.getToKhaiThue().getId());</span>
+<span class="fc" id="L52">                            ps.executeUpdate();</span>
+                        }
+<span class="fc" id="L54">                    }</span>
+                    //con.commit();
+                }
+            }
+<span class="fc" id="L58">        } catch (Exception e1) {</span>
+<span class="fc" id="L59">            result = false;</span>
+//            System.out.println(&quot;Cau lenh co van de&quot;);
+//            try{
+//                con.rollback();
+//            }
+//            catch(SQLException e2){
+//                e2.printStackTrace();
+//            }
+//            e1.printStackTrace();
+        }finally{
+<span class="nc" id="L69">            try{</span>
+                //con.setAutoCommit(true);
+            }catch(Exception e3){
+//                System.out.println(&quot;Khong the rollback&quot;);
+//                e3.printStackTrace();
+            }
+<span class="pc" id="L75">        }</span>
+<span class="fc" id="L76">        return result;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

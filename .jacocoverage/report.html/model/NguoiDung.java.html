@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NguoiDung.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;HeThongTinhThue&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">NguoiDung.java</span></div><h1>NguoiDung.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package model;
+
+import java.util.Date;
+
+/**
+ *
+ * @author Vinh
+ */
+public class NguoiDung extends NguoiDongThue{
+    private String email;
+    private String matKhau;
+    private String soDienThoai;
+    private Boolean trangThaiKichHoat;
+    
+    
+    public NguoiDung(int id, String ten, String email, Date ngayThangNamSinh, String gioiTinh, String quocTich, String diaChiCuTru, String dienThoai, GiayToCaNhan giayTo, DiaChi diaChi, int maSoThue) {
+<span class="nc" id="L22">        super(id, ten, email, ngayThangNamSinh, gioiTinh, quocTich, diaChiCuTru, dienThoai, giayTo, diaChi, maSoThue);</span>
+<span class="nc" id="L23">    }</span>
+
+<span class="nc" id="L25">    public NguoiDung(String email, String matKhau, String soDienThoai){</span>
+<span class="nc" id="L26">        this.email=email;</span>
+<span class="nc" id="L27">        this.matKhau=matKhau;</span>
+<span class="nc" id="L28">        this.soDienThoai=soDienThoai;</span>
+<span class="nc" id="L29">    }</span>
+
+<span class="fc" id="L31">    public NguoiDung(){</span>
+        
+<span class="fc" id="L33">    }</span>
+    
+    public String getEmail() {
+<span class="fc" id="L36">        return email;</span>
+    }
+
+    public void setEmail(String email) {
+<span class="fc" id="L40">        this.email = email;</span>
+<span class="fc" id="L41">    }</span>
+
+    public String getMatKhau() {
+<span class="fc" id="L44">        return matKhau;</span>
+    }
+
+    public void setMatKhau(String matKhau) {
+<span class="fc" id="L48">        this.matKhau = matKhau;</span>
+<span class="fc" id="L49">    }</span>
+
+    public String getSoDienThoai() {
+<span class="fc" id="L52">        return soDienThoai;</span>
+    }
+
+    public void setSoDienThoai(String soDienThoai) {
+<span class="nc" id="L56">        this.soDienThoai = soDienThoai;</span>
+<span class="nc" id="L57">    }</span>
+
+    public Boolean getTrangThaiKichHoat() {
+<span class="nc" id="L60">        return trangThaiKichHoat;</span>
+    }
+
+    public void setTrangThaiKichHoat(Boolean trangThaiKichHoat) {
+<span class="nc" id="L64">        this.trangThaiKichHoat = trangThaiKichHoat;</span>
+<span class="nc" id="L65">    }</span>
+
+    public int getMaSoThue() {
+<span class="fc" id="L68">        return maSoThue;</span>
+    }
+
+    public void setMaSoThue(int maSoThue) {
+<span class="fc" id="L72">        this.maSoThue = maSoThue;</span>
+<span class="fc" id="L73">    }</span>
+
+    public String getTen() {
+<span class="fc" id="L76">        return ten;</span>
+    }
+
+    public void setTen(String ten) {
+<span class="fc" id="L80">        this.ten = ten;</span>
+<span class="fc" id="L81">    }</span>
+
+    public Date getNgayThangNamSinh() {
+<span class="nc" id="L84">        return ngayThangNamSinh;</span>
+    }
+
+    public void setNgayThangNamSinh(Date ngayThangNamSinh) {
+<span class="nc" id="L88">        this.ngayThangNamSinh = ngayThangNamSinh;</span>
+<span class="nc" id="L89">    }</span>
+
+    public String getGioiTinh() {
+<span class="nc" id="L92">        return gioiTinh;</span>
+    }
+
+    public void setGioiTinh(String gioiTinh) {
+<span class="nc" id="L96">        this.gioiTinh = gioiTinh;</span>
+<span class="nc" id="L97">    }</span>
+
+    public String getQuocTich() {
+<span class="nc" id="L100">        return quocTich;</span>
+    }
+
+    public void setQuocTich(String quocTich) {
+<span class="nc" id="L104">        this.quocTich = quocTich;</span>
+<span class="nc" id="L105">    }</span>
+
+    public String getDiaChiCuTru() {
+<span class="nc" id="L108">        return diaChiCuTru;</span>
+    }
+
+    public void setDiaChiCuTru(String diaChiCuTru) {
+<span class="nc" id="L112">        this.diaChiCuTru = diaChiCuTru;</span>
+<span class="nc" id="L113">    }</span>
+
+    public GiayToCaNhan getGiayTo() {
+<span class="nc" id="L116">        return giayTo;</span>
+    }
+
+    public void setGiayTo(GiayToCaNhan giayTo) {
+<span class="nc" id="L120">        this.giayTo = giayTo;</span>
+<span class="nc" id="L121">    }</span>
+
+    public DiaChi getDiaChi() {
+<span class="nc" id="L124">        return diaChi;</span>
+    }
+
+    public void setDiaChi(DiaChi diaChi) {
+<span class="nc" id="L128">        this.diaChi = diaChi;</span>
+<span class="nc" id="L129">    }</span>
+
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
