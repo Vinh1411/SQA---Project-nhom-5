@@ -5,13 +5,14 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Vinh
  */
-public class BieuMauTinhThue {
+public class BieuMauTinhThue implements Serializable{
 
     protected ToKhaiThue toKhaiThue;
     
@@ -20,7 +21,6 @@ public class BieuMauTinhThue {
     protected long tongTienThuePhaiDong;
     
     private long tienMienCaNhan = 11000000;
-    private long tienMienCaNhanNam = 132000000;
     private long tienPhuThuocTN = 4400000;
     
     private long tienThueDauTu;
@@ -50,15 +50,12 @@ public class BieuMauTinhThue {
     
     public BieuMauTinhThue(ToKhaiThue toKhaiThue) {
         this.toKhaiThue = toKhaiThue;
-        
+        if(toKhaiThue.getKyTinhThue().compareTo("Theo tháng") != 0){
+            tienMienCaNhan = 11000000*12;
+            tienPhuThuocTN = 4400000*12;
+        }
         this.tongTienTruocThue = toKhaiThue.getTienLuong() + toKhaiThue.getTienDauTu() + toKhaiThue.getTienKinhDoanh() + toKhaiThue.getTienTrungThuong() + toKhaiThue.getTienBatDongSan();
-        this.tongTienDuocMienGiam =  toKhaiThue.getTienTuThien() + toKhaiThue.getTienDongBaoHiem() + toKhaiThue.getTienHuuTri();
-        if(toKhaiThue.getKyTinhThue().compareTo("Theo tháng") == 0){
-            this.tongTienDuocMienGiam = this.tongTienDuocMienGiam + tienMienCaNhan + tienPhuThuocTN * toKhaiThue.getSoNguoiPhuThuoc();
-        }
-        else{
-            this.tongTienDuocMienGiam = this.tongTienDuocMienGiam + tienMienCaNhanNam + tienPhuThuocTN * toKhaiThue.getSoNguoiPhuThuoc() * 12;
-        }
+        this.tongTienDuocMienGiam =  toKhaiThue.getTienTuThien() + toKhaiThue.getTienDongBaoHiem() + toKhaiThue.getTienHuuTri() + tienMienCaNhan + tienPhuThuocTN * toKhaiThue.getSoNguoiPhuThuoc();
         this.tienThueDauTu = (long) (toKhaiThue.getTienDauTu() * dsThueToanPhan[1]/100);
         this.tienThueKinhDoanh = (long) (toKhaiThue.getTienKinhDoanh() * dsThueToanPhan[0]/100);
         this.tienThueBDS = (long) (toKhaiThue.getTienBatDongSan() * dsThueToanPhan[2]/100);
@@ -275,14 +272,5 @@ public class BieuMauTinhThue {
     public void setTienMienCaNhan(long tienMienCaNhan) {
         this.tienMienCaNhan = tienMienCaNhan;
     }
-
-    public long getTienMienCaNhanNam() {
-        return tienMienCaNhanNam;
-    }
-
-    public void setTienMienCaNhanNam(long tienMienCaNhanNam) {
-        this.tienMienCaNhanNam = tienMienCaNhanNam;
-    }
-    
     
 }

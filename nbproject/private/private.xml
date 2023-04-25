@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Vinh/Documents/NetBeansProjects/HeThongTinhThue/web/chonKyDeDong.jsp</file>
+            <file>file:/C:/Users/Vinh/Documents/NetBeansProjects/HeThongTinhThue/web/chonKyTinhThue.jsp</file>
             <file>file:/C:/Users/Vinh/Documents/NetBeansProjects/HeThongTinhThue/src/java/model/BieuMauTinhThue.java</file>
-            <file>file:/C:/Users/Vinh/Documents/NetBeansProjects/HeThongTinhThue/web/thuedientu.png</file>
             <file>file:/C:/Users/Vinh/Documents/NetBeansProjects/HeThongTinhThue/src/java/controller/TinhThueServlet.java</file>
+            <file>file:/C:/Users/Vinh/Documents/NetBeansProjects/HeThongTinhThue/src/java/controller/DangKiServlet.java</file>
         </group>
     </open-files>
 </project-private>
