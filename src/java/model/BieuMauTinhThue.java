@@ -52,12 +52,12 @@ public class BieuMauTinhThue {
         this.toKhaiThue = toKhaiThue;
         
         this.tongTienTruocThue = toKhaiThue.getTienLuong() + toKhaiThue.getTienDauTu() + toKhaiThue.getTienKinhDoanh() + toKhaiThue.getTienTrungThuong() + toKhaiThue.getTienBatDongSan();
-        this.tongTienDuocMienGiam = tienPhuThuocTN * toKhaiThue.getSoNguoiPhuThuoc() + toKhaiThue.getTienTuThien() + toKhaiThue.getTienDongBaoHiem() + toKhaiThue.getTienHuuTri();
+        this.tongTienDuocMienGiam =  toKhaiThue.getTienTuThien() + toKhaiThue.getTienDongBaoHiem() + toKhaiThue.getTienHuuTri();
         if(toKhaiThue.getKyTinhThue().compareTo("Theo tháng") == 0){
-            this.tongTienDuocMienGiam = this.tongTienDuocMienGiam + tienMienCaNhan;
+            this.tongTienDuocMienGiam = this.tongTienDuocMienGiam + tienMienCaNhan + tienPhuThuocTN * toKhaiThue.getSoNguoiPhuThuoc();
         }
         else{
-            this.tongTienDuocMienGiam = this.tongTienDuocMienGiam + tienMienCaNhanNam;
+            this.tongTienDuocMienGiam = this.tongTienDuocMienGiam + tienMienCaNhanNam + tienPhuThuocTN * toKhaiThue.getSoNguoiPhuThuoc() * 12;
         }
         this.tienThueDauTu = (long) (toKhaiThue.getTienDauTu() * dsThueToanPhan[1]/100);
         this.tienThueKinhDoanh = (long) (toKhaiThue.getTienKinhDoanh() * dsThueToanPhan[0]/100);

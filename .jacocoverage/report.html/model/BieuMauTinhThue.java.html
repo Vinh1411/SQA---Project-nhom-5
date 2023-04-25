@@ -19,8 +19,9 @@ public class BieuMauTinhThue {
     protected long tongTienDuocMienGiam;
     protected long tongTienThuePhaiDong;
     
-<span class="pc" id="L22">    private long tienMienCaNhan = 9000000;</span>
-<span class="pc" id="L23">    private long tienPhuThuocTN = 3600000;</span>
+<span class="pc" id="L22">    private long tienMienCaNhan = 11000000;</span>
+<span class="pc" id="L23">    private long tienMienCaNhanNam = 132000000;</span>
+<span class="pc" id="L24">    private long tienPhuThuocTN = 4400000;</span>
     
     private long tienThueDauTu;
     private long tienThueKinhDoanh;
@@ -29,9 +30,9 @@ public class BieuMauTinhThue {
     private long tienThueLuong;
     private ArrayList&lt;ThueLuongTheoBac&gt; dsThueLuongTheoBac;
 
-<span class="pc" id="L32">    private int[] dsBacThueLuong={5, 10, 15, 20, 25, 30, 35};</span>
-<span class="pc" id="L33">    private long [] dsKhoangBacThang={5000000, 5000000, 8000000, 14000000, 20000000, 28000000, -1};</span>
-<span class="pc" id="L34">    private long [] dsKhoangBacNam={60000000, 60000000, 96000000, 168000000, 240000000, 336000000, -1};</span>
+<span class="pc" id="L33">    private int[] dsBacThueLuong={5, 10, 15, 20, 25, 30, 35};</span>
+<span class="pc" id="L34">    private long [] dsKhoangBacThang={5000000, 5000000, 8000000, 14000000, 20000000, 28000000, -1};</span>
+<span class="pc" id="L35">    private long [] dsKhoangBacNam={60000000, 60000000, 96000000, 168000000, 240000000, 336000000, -1};</span>
     
     //Thue suat kinh doanh tuong ung voi vi tri 0
     //Thue suat dau tu tuong ung voi vi tri 1
@@ -39,129 +40,128 @@ public class BieuMauTinhThue {
     //Thue suat voi trung thuong tuong ung voi vi tri 3
     //Thue suat voi doi tuong hop dong lao dong nho hon 3 thang vi tri 4
     //Thue suat voi doi tuong khong cu tru vi tri 5
-<span class="pc" id="L42">    private int [] dsThueToanPhan={5, 5, 2, 10, 10, 20};</span>
+<span class="pc" id="L43">    private int [] dsThueToanPhan={5, 5, 2, 10, 10, 20};</span>
     
     private int thueSuatToanPhanLuong;
     
-<span class="fc" id="L46">    public BieuMauTinhThue(){</span>
+<span class="fc" id="L47">    public BieuMauTinhThue(){</span>
         
-<span class="fc" id="L48">    }</span>
+<span class="fc" id="L49">    }</span>
     
-<span class="nc" id="L50">    public BieuMauTinhThue(ToKhaiThue toKhaiThue) {</span>
-<span class="nc" id="L51">        this.toKhaiThue = toKhaiThue;</span>
+<span class="nc" id="L51">    public BieuMauTinhThue(ToKhaiThue toKhaiThue) {</span>
+<span class="nc" id="L52">        this.toKhaiThue = toKhaiThue;</span>
         
-<span class="nc" id="L53">        this.tongTienTruocThue = toKhaiThue.getTienLuong() + toKhaiThue.getTienDauTu() + toKhaiThue.getTienKinhDoanh() + toKhaiThue.getTienTrungThuong() + toKhaiThue.getTienBatDongSan();</span>
-<span class="nc" id="L54">        this.tongTienDuocMienGiam = tienMienCaNhan + tienPhuThuocTN * toKhaiThue.getSoNguoiPhuThuoc() + toKhaiThue.getTienTuThien() + toKhaiThue.getTienDongBaoHiem() + toKhaiThue.getTienHuuTri();</span>
-<span class="nc" id="L55">        this.tienThueDauTu = (long) (toKhaiThue.getTienDauTu() * dsThueToanPhan[1]/100);</span>
-<span class="nc" id="L56">        this.tienThueKinhDoanh = (long) (toKhaiThue.getTienKinhDoanh() * dsThueToanPhan[0]/100);</span>
-<span class="nc" id="L57">        this.tienThueBDS = (long) (toKhaiThue.getTienBatDongSan() * dsThueToanPhan[2]/100);</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (toKhaiThue.getTienTrungThuong() &gt;= 10000000) {</span>
-<span class="nc" id="L59">            this.tienThueTrungThuong = (long) (toKhaiThue.getTienTrungThuong() * dsThueToanPhan[3]/100);</span>
-        } else {
-<span class="nc" id="L61">            this.tienThueTrungThuong = 0;</span>
+<span class="nc" id="L54">        this.tongTienTruocThue = toKhaiThue.getTienLuong() + toKhaiThue.getTienDauTu() + toKhaiThue.getTienKinhDoanh() + toKhaiThue.getTienTrungThuong() + toKhaiThue.getTienBatDongSan();</span>
+<span class="nc" id="L55">        this.tongTienDuocMienGiam =  toKhaiThue.getTienTuThien() + toKhaiThue.getTienDongBaoHiem() + toKhaiThue.getTienHuuTri();</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if(toKhaiThue.getKyTinhThue().compareTo(&quot;Theo tháng&quot;) == 0){</span>
+<span class="nc" id="L57">            this.tongTienDuocMienGiam = this.tongTienDuocMienGiam + tienMienCaNhan + tienPhuThuocTN * toKhaiThue.getSoNguoiPhuThuoc();</span>
         }
-<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (toKhaiThue.getDoiTuongDong().compareTo(&quot;Cư trú có hợp đồng &gt;= 3 tháng&quot;) == 0) {</span>
-<span class="nc" id="L64">            long temp = (toKhaiThue.getTienLuong() - this.tongTienDuocMienGiam);</span>
-<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (temp &lt; 0) {</span>
-<span class="nc" id="L66">                this.tienThueLuong = 0;</span>
+        else{
+<span class="nc" id="L60">            this.tongTienDuocMienGiam = this.tongTienDuocMienGiam + tienMienCaNhanNam + tienPhuThuocTN * toKhaiThue.getSoNguoiPhuThuoc() * 12;</span>
+        }
+<span class="nc" id="L62">        this.tienThueDauTu = (long) (toKhaiThue.getTienDauTu() * dsThueToanPhan[1]/100);</span>
+<span class="nc" id="L63">        this.tienThueKinhDoanh = (long) (toKhaiThue.getTienKinhDoanh() * dsThueToanPhan[0]/100);</span>
+<span class="nc" id="L64">        this.tienThueBDS = (long) (toKhaiThue.getTienBatDongSan() * dsThueToanPhan[2]/100);</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (toKhaiThue.getTienTrungThuong() &gt;= 10000000) {</span>
+<span class="nc" id="L66">            this.tienThueTrungThuong = (long) (toKhaiThue.getTienTrungThuong() * dsThueToanPhan[3]/100);</span>
+        } else {
+<span class="nc" id="L68">            this.tienThueTrungThuong = 0;</span>
+        }
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (toKhaiThue.getDoiTuongDong().compareTo(&quot;Cư trú có hợp đồng &gt;= 3 tháng&quot;) == 0) {</span>
+<span class="nc" id="L71">            long temp = (toKhaiThue.getTienLuong() - this.tongTienDuocMienGiam);</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            if (temp &lt; 0) {</span>
+<span class="nc" id="L73">                this.tienThueLuong = 0;</span>
             }
             else{
-<span class="nc" id="L69">                dsThueLuongTheoBac=new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">                if (toKhaiThue.getKyTinhThue().compareTo(&quot;Theo tháng&quot;) == 0) {</span>
-<span class="nc" id="L71">                    int i=0;</span>
-<span class="nc bnc" id="L72" title="All 2 branches missed.">                    while(temp!=0){</span>
-<span class="nc" id="L73">                        temp = bacGiam(dsBacThueLuong[i], temp, dsKhoangBacThang[i]);</span>
-<span class="nc" id="L74">                        i=i+1;</span>
+<span class="nc" id="L76">                dsThueLuongTheoBac=new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">                if (toKhaiThue.getKyTinhThue().compareTo(&quot;Theo tháng&quot;) == 0) {</span>
+<span class="nc" id="L78">                    int i=0;</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">                    while(temp!=0){</span>
+<span class="nc" id="L80">                        temp = bacGiam(dsBacThueLuong[i], temp, dsKhoangBacThang[i]);</span>
+<span class="nc" id="L81">                        i=i+1;</span>
                     }
-<span class="nc" id="L76">                } else {</span>
-<span class="nc" id="L77">                    int i=0;</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">                    while(temp!=0){</span>
-<span class="nc" id="L79">                        temp = bacGiam(dsBacThueLuong[i], temp, dsKhoangBacNam[i]);</span>
-<span class="nc" id="L80">                        i=i+1;</span>
+<span class="nc" id="L83">                } else {</span>
+<span class="nc" id="L84">                    int i=0;</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">                    while(temp!=0){</span>
+<span class="nc" id="L86">                        temp = bacGiam(dsBacThueLuong[i], temp, dsKhoangBacNam[i]);</span>
+<span class="nc" id="L87">                        i=i+1;</span>
                     }
                 }
             }
-<span class="nc" id="L84">            this.tongTienThuePhaiDong = this.tienThueKinhDoanh + this.tienThueKinhDoanh + this.tienThueBDS+this.tienThueTrungThuong+tienThueLuong;</span>
-<span class="nc" id="L85">        } else {</span>
-<span class="nc bnc" id="L86" title="All 2 branches missed.">            if (toKhaiThue.getDoiTuongDong().compareTo(&quot;Cư trú có hợp đồng &lt; 3 tháng&quot;) == 0) {</span>
-<span class="nc" id="L87">                thueSuatToanPhanLuong=dsThueToanPhan[4];</span>
-<span class="nc" id="L88">                this.tienThueLuong=(toKhaiThue.getTienLuong() - this.tongTienDuocMienGiam) * dsThueToanPhan[4] / 100;</span>
-<span class="nc bnc" id="L89" title="All 2 branches missed.">                if (this.tienThueLuong &lt; 0) {</span>
-<span class="nc" id="L90">                    this.tienThueLuong = 0;</span>
-                }
-<span class="nc" id="L92">                this.tongTienThuePhaiDong = this.tienThueKinhDoanh + this.tienThueKinhDoanh + this.tienThueBDS+this.tienThueTrungThuong+tienThueLuong;</span>
-            } else {
-<span class="nc" id="L94">                thueSuatToanPhanLuong=dsThueToanPhan[5];</span>
-<span class="nc" id="L95">                this.tienThueLuong = (toKhaiThue.getTienLuong() - this.tongTienDuocMienGiam) * dsThueToanPhan[5] / 100;</span>
+<span class="nc" id="L91">            this.tongTienThuePhaiDong = this.tienThueKinhDoanh + this.tienThueKinhDoanh + this.tienThueBDS+this.tienThueTrungThuong+tienThueLuong;</span>
+<span class="nc" id="L92">        } else {</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            if (toKhaiThue.getDoiTuongDong().compareTo(&quot;Cư trú có hợp đồng &lt; 3 tháng&quot;) == 0) {</span>
+<span class="nc" id="L94">                thueSuatToanPhanLuong=dsThueToanPhan[4];</span>
+<span class="nc" id="L95">                this.tienThueLuong=(toKhaiThue.getTienLuong() - this.tongTienDuocMienGiam) * dsThueToanPhan[4] / 100;</span>
 <span class="nc bnc" id="L96" title="All 2 branches missed.">                if (this.tienThueLuong &lt; 0) {</span>
 <span class="nc" id="L97">                    this.tienThueLuong = 0;</span>
                 }
-<span class="nc" id="L99">                this.tongTienThuePhaiDong += this.tienThueKinhDoanh + this.tienThueKinhDoanh + this.tienThueBDS+this.tienThueTrungThuong+tienThueLuong;</span>
+<span class="nc" id="L99">                this.tongTienThuePhaiDong = this.tienThueKinhDoanh + this.tienThueKinhDoanh + this.tienThueBDS+this.tienThueTrungThuong+tienThueLuong;</span>
+            } else {
+<span class="nc" id="L101">                thueSuatToanPhanLuong=dsThueToanPhan[5];</span>
+<span class="nc" id="L102">                this.tienThueLuong = (toKhaiThue.getTienLuong() - this.tongTienDuocMienGiam) * dsThueToanPhan[5] / 100;</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">                if (this.tienThueLuong &lt; 0) {</span>
+<span class="nc" id="L104">                    this.tienThueLuong = 0;</span>
+                }
+<span class="nc" id="L106">                this.tongTienThuePhaiDong += this.tienThueKinhDoanh + this.tienThueKinhDoanh + this.tienThueBDS+this.tienThueTrungThuong+tienThueLuong;</span>
             }
         }
-<span class="nc" id="L102">    }</span>
+<span class="nc" id="L109">    }</span>
 
     private long bacGiam(int thueSuat, long tienConLai, long nguong) {
-<span class="nc bnc" id="L105" title="All 2 branches missed.">        if (nguong != -1) {</span>
-<span class="nc bnc" id="L106" title="All 2 branches missed.">            if (tienConLai &lt;= nguong) {</span>
-<span class="nc" id="L107">                long temp=tienConLai * thueSuat / 100;</span>
-<span class="nc" id="L108">                dsThueLuongTheoBac.add(new ThueLuongTheoBac(tienConLai, temp));</span>
-<span class="nc" id="L109">                tienThueLuong+=temp;</span>
-<span class="nc" id="L110">                tienConLai = 0;</span>
-<span class="nc" id="L111">            } else {</span>
-<span class="nc" id="L112">                long temp=nguong * thueSuat / 100;</span>
-<span class="nc" id="L113">                dsThueLuongTheoBac.add(new ThueLuongTheoBac(nguong, temp));</span>
-<span class="nc" id="L114">                tienThueLuong+=temp;</span>
-<span class="nc" id="L115">                tienConLai -= nguong;</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        if (nguong != -1) {</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            if (tienConLai &lt;= nguong) {</span>
+<span class="nc" id="L114">                long temp=tienConLai * thueSuat / 100;</span>
+<span class="nc" id="L115">                dsThueLuongTheoBac.add(new ThueLuongTheoBac(tienConLai, temp));</span>
+<span class="nc" id="L116">                tienThueLuong+=temp;</span>
+<span class="nc" id="L117">                tienConLai = 0;</span>
+<span class="nc" id="L118">            } else {</span>
+<span class="nc" id="L119">                long temp=nguong * thueSuat / 100;</span>
+<span class="nc" id="L120">                dsThueLuongTheoBac.add(new ThueLuongTheoBac(nguong, temp));</span>
+<span class="nc" id="L121">                tienThueLuong+=temp;</span>
+<span class="nc" id="L122">                tienConLai -= nguong;</span>
             }
-<span class="nc" id="L117">            return tienConLai;</span>
+<span class="nc" id="L124">            return tienConLai;</span>
         } else {
-<span class="nc" id="L119">            long temp=tienConLai * thueSuat / 100;</span>
-<span class="nc" id="L120">            dsThueLuongTheoBac.add(new ThueLuongTheoBac(tienConLai, temp));</span>
-<span class="nc" id="L121">            tienThueLuong+=temp;</span>
-<span class="nc" id="L122">            return 0;</span>
+<span class="nc" id="L126">            long temp=tienConLai * thueSuat / 100;</span>
+<span class="nc" id="L127">            dsThueLuongTheoBac.add(new ThueLuongTheoBac(tienConLai, temp));</span>
+<span class="nc" id="L128">            tienThueLuong+=temp;</span>
+<span class="nc" id="L129">            return 0;</span>
         }
     }
 
     public ToKhaiThue getToKhaiThue() {
-<span class="nc" id="L127">        return toKhaiThue;</span>
+<span class="nc" id="L134">        return toKhaiThue;</span>
     }
 
     public void setToKhaiThue(ToKhaiThue toKhaiThue) {
-<span class="nc" id="L131">        this.toKhaiThue = toKhaiThue;</span>
-<span class="nc" id="L132">    }</span>
+<span class="nc" id="L138">        this.toKhaiThue = toKhaiThue;</span>
+<span class="nc" id="L139">    }</span>
 
     public long getTongTienTruocThue() {
-<span class="nc" id="L135">        return tongTienTruocThue;</span>
+<span class="nc" id="L142">        return tongTienTruocThue;</span>
     }
 
     public void setTongTienTruocThue(long tongTienTruocThue) {
-<span class="nc" id="L139">        this.tongTienTruocThue = tongTienTruocThue;</span>
-<span class="nc" id="L140">    }</span>
+<span class="nc" id="L146">        this.tongTienTruocThue = tongTienTruocThue;</span>
+<span class="nc" id="L147">    }</span>
 
     public long getTongTienDuocMienGiam() {
-<span class="nc" id="L143">        return tongTienDuocMienGiam;</span>
+<span class="nc" id="L150">        return tongTienDuocMienGiam;</span>
     }
 
     public void setTongTienDuocMienGiam(long tongTienDuocMienGiam) {
-<span class="nc" id="L147">        this.tongTienDuocMienGiam = tongTienDuocMienGiam;</span>
-<span class="nc" id="L148">    }</span>
+<span class="nc" id="L154">        this.tongTienDuocMienGiam = tongTienDuocMienGiam;</span>
+<span class="nc" id="L155">    }</span>
 
     public long getTongTienThuePhaiDong() {
-<span class="nc" id="L151">        return tongTienThuePhaiDong;</span>
+<span class="nc" id="L158">        return tongTienThuePhaiDong;</span>
     }
 
     public void setTongTienThuePhaiDong(long tongTienThuePhaiDong) {
-<span class="nc" id="L155">        this.tongTienThuePhaiDong = tongTienThuePhaiDong;</span>
-<span class="nc" id="L156">    }</span>
+<span class="nc" id="L162">        this.tongTienThuePhaiDong = tongTienThuePhaiDong;</span>
+<span class="nc" id="L163">    }</span>
 
-    public long getTienMienCaNhan() {
-<span class="nc" id="L159">        return tienMienCaNhan;</span>
-    }
-
-    public void setTienMienCaNhan(long tienMienCaNhan) {
-<span class="nc" id="L163">        this.tienMienCaNhan = tienMienCaNhan;</span>
-<span class="nc" id="L164">    }</span>
 
     public long getTienPhuThuocTN() {
 <span class="nc" id="L167">        return tienPhuThuocTN;</span>
@@ -267,5 +267,23 @@ public class BieuMauTinhThue {
     public int getThueSuatToanPhanLuong() {
 <span class="nc" id="L268">        return thueSuatToanPhanLuong;</span>
     }
+
+    public long getTienMienCaNhan() {
+<span class="nc" id="L272">        return tienMienCaNhan;</span>
+    }
+
+    public void setTienMienCaNhan(long tienMienCaNhan) {
+<span class="nc" id="L276">        this.tienMienCaNhan = tienMienCaNhan;</span>
+<span class="nc" id="L277">    }</span>
+
+    public long getTienMienCaNhanNam() {
+<span class="nc" id="L280">        return tienMienCaNhanNam;</span>
+    }
+
+    public void setTienMienCaNhanNam(long tienMienCaNhanNam) {
+<span class="nc" id="L284">        this.tienMienCaNhanNam = tienMienCaNhanNam;</span>
+<span class="nc" id="L285">    }</span>
+    
+    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

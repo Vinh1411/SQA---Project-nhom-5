@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-EB1FE3D" name="test.NganHangDAOTestTest" skipped="0" tests="3" time="0.288" timestamp="2023-04-25T15:26:32">
+<testsuite errors="0" failures="0" hostname="DESKTOP-EB1FE3D" name="test.NganHangDAOTestTest" skipped="0" tests="3" time="0.312" timestamp="2023-04-25T17:33:00">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -48,7 +48,7 @@
     <property name="libs.testng.src" value="" />
     <property name="libs.spring-webmvc3.0.src" value="" />
     <property name="libs.restapi.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\modules\ext\jaxrs-2.0\javax.ws.rs-api-2.0.jar" />
-    <property name="runmain.jvmargs" value=" -javaagent:&quot;C:\Users\Vinh\AppData\Roaming\NetBeans\12.0\modules\ext\jacocoagent.jar&quot;=includes=controller.*:dao.*:model.*:test.*,destfile=&quot;C:\Users\Vinh\Documents\NetBeansProjects\HeThongTinhThue\jacoco.exec-79200865608000&quot;" />
+    <property name="runmain.jvmargs" value=" -javaagent:&quot;C:\Users\Vinh\AppData\Roaming\NetBeans\12.0\modules\ext\jacocoagent.jar&quot;=includes=controller.*:dao.*:model.*:test.*,destfile=&quot;C:\Users\Vinh\Documents\NetBeansProjects\HeThongTinhThue\jacoco.exec-86788123318900&quot;" />
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
     <property name="libs.jakartaee-web-api-8.0.prop-maven-dependencies" value="jakarta.platform:jakarta.jakartaee-web-api:8.0.0:jar" />
     <property name="libs.jaxb.maven-pom" value="" />
@@ -60,7 +60,7 @@
     <property name="libs.spring-webmvc5.0.javadoc" value="" />
     <property name="libs.spring-framework500.classpath" value="C:\Program Files\NetBeans-12.0\netbeans\platform\modules\org-apache-commons-logging.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\cglib-2.2.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-aop-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-aspects-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-beans-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-context-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-context-indexer-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-context-support-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-core-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-expression-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-instrument-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-jcl-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-jdbc-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-jms-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-messaging-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-orm-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-oxm-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-test-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-tx-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-web-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-webflux-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-webmvc-5.2.2.RELEASE.jar;C:\Program Files\NetBeans-12.0\netbeans\java\modules\ext\spring-5\spring-websocket-5.2.2.RELEASE.jar" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.NganHangDAOTestTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Vinh\Documents\NetBeansProjects\HeThongTinhThue\build\test\results\TEST-test.NganHangDAOTestTest.xml crashfile=C:\Users\Vinh\Documents\NetBeansProjects\HeThongTinhThue\build\junitvmwatcher6164528387034404030.properties propsfile=C:\Users\Vinh\Documents\NetBeansProjects\HeThongTinhThue\build\junit8471323861744368004.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.NganHangDAOTestTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Vinh\Documents\NetBeansProjects\HeThongTinhThue\build\test\results\TEST-test.NganHangDAOTestTest.xml crashfile=C:\Users\Vinh\Documents\NetBeansProjects\HeThongTinhThue\build\junitvmwatcher1940834965487855229.properties propsfile=C:\Users\Vinh\Documents\NetBeansProjects\HeThongTinhThue\build\junit1187219906844929376.properties" />
     <property name="build.classes.dir" value="build/web/WEB-INF/classes" />
     <property name="ap.supported.internal" value="true" />
     <property name="libs.javaee-api-8.0.maven-pom" value="" />
@@ -291,7 +291,7 @@
     <property name="libs.eclipselinkmodelgen.javadoc" value="" />
     <property name="libs.metro.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-api-javadoc.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-extra-javadoc.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-extra-api-javadoc.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-rt-javadoc.jar;C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\webservices-tools-javadoc.jar" />
     <property name="libs.struts.maven-pom" value="" />
-    <property name="jnidispatch.path" value="C:\Users\Vinh\AppData\Local\Temp\jna-2666445\jna3787942191528799360.dll" />
+    <property name="jnidispatch.path" value="C:\Users\Vinh\AppData\Local\Temp\jna-2666445\jna8310429441339697570.dll" />
     <property name="netbeans.home+have.tests" value="true" />
     <property name="libs.testng.maven-pom" value="" />
     <property name="libs.jaxb.src" value="" />
@@ -411,9 +411,9 @@
     <property name="libs.testng.prop-maven-dependencies" value="org.testng:testng:6.8.1:jar" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="C:\Program Files\NetBeans-12.0\netbeans\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="test.NganHangDAOTestTest" name="testTestLayToanBoNganHangException1" time="0.229" />
-  <testcase classname="test.NganHangDAOTestTest" name="testTestLayToanBoNganHangException2" time="0.01" />
-  <testcase classname="test.NganHangDAOTestTest" name="testTestLayToanBoNganHangException3" time="0.006" />
+  <testcase classname="test.NganHangDAOTestTest" name="testTestLayToanBoNganHangException1" time="0.246" />
+  <testcase classname="test.NganHangDAOTestTest" name="testTestLayToanBoNganHangException2" time="0.007" />
+  <testcase classname="test.NganHangDAOTestTest" name="testTestLayToanBoNganHangException3" time="0.012" />
   <system-out><![CDATA[Truong hop 1: Bo qua vong lap
 Truong hop 2: Thuc hien vong lap 1 lan
 Truong hop 3: Thuc hien vong lap k lan
